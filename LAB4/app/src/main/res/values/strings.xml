@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LAB4</string>
+    <string name="vTxt">Vaše ime: </string>
+    <string name="vTxt2"></string>
+    <string name="btn">Pošalji</string>
+    <string name="btn2">Odaberi kontakt</string>
+    <string name="btnBack">Povratak na prvu aktivnost</string>
+</resources>
