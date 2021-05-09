@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LAB8</string>
+    <string name="btn">spremi postavke</string>
+    <string name="btn2">zapamti</string>
+    <string name="txt">zivotinja : </string>
+    <string name="txt2">ptica : </string>
 </resources>
