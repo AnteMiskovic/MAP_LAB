@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LAB7</string>
+    <string name="txtView">Dobar dan.</string>
+    <string name="txtBtn">Otvori dijalog za odabir vremena</string>
 </resources>
