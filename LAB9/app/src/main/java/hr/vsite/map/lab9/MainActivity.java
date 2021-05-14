@@ -1,19 +1,28 @@
 package hr.vsite.map.lab9;
 import hr.vsite.map.lab9.DbLab9Contract.User;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText name, email, password;
     Button btnRegister;
+    DbLab9Helper helper = new DbLab9Helper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onRegister(View v){
-        DbLab9Helper helper = new DbLab9Helper(this);
+
         if(v.getId() == R.id.btnRegister){
             try {
                 SQLiteDatabase db = helper.getWritableDatabase();
@@ -48,9 +57,39 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.admin:
+                Intent intent = new Intent(this, Administracija.class);
+                intent.putExtra("Users",writeData());
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
+    }
 
-
+    private String writeData() {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] columns = new String[]{ User.COLUMN_NAME,User.COLUMN_EMAIL};
+        Cursor cur = db.query(User.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuilder sb = new StringBuilder();
+        while(cur.moveToNext()){
+            sb.append("\n");
+            sb.append(cur.getString(cur.getColumnIndex((User.COLUMN_NAME))));
+            sb.append(" | ");
+            sb.append(cur.getString(cur.getColumnIndex((User.COLUMN_EMAIL))));
+        }
+        return sb.toString();
+    }
 
 
 }

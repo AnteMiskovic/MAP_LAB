@@ -4,4 +4,5 @@
     <string name="tEmail">E-mail</string>
     <string name="tPassword">Password</string>
     <string name="btnRegister">Registiraj</string>
+    <string name="tUser">USERS</string>
 </resources>
