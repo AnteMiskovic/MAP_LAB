@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LAB9">
+        <provider
+            android:name=".DbLab10Provider"
+            android:authorities="hr.vsite.map.lab9"
+            android:enabled="true"
+            android:exported="true">
+
+        </provider>
         <activity android:name=".Administracija"
             android:parentActivityName="hr.vsite.map.lab9.MainActivity"></activity>
         <activity android:name=".MainActivity">
